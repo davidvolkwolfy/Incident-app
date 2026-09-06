@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="sl" class="dark">
 <head>
@@ -10,9 +9,7 @@
         (function () {
             var m = null;
             try { m = localStorage.getItem('srcSocTheme'); } catch (e) {}
-            if (!m) {
-                m = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
-            }
+            if (m !== 'light' && m !== 'dark') { m = 'dark'; }
             document.documentElement.classList.remove('dark', 'light');
             document.documentElement.classList.add(m);
         })();
@@ -65,80 +62,148 @@
         }
 
         /* ============ SVETLA TEMA ============ */
-        html.light body { background-color:#f1f5f9 !important; color:#0f172a !important; }
+        html.light body { background-color:#eef2f7 !important; color:#0f172a !important; }
 
+        /* --- ozadja (vse uporabljene prosojnosti) --- */
         html.light .bg-slate-950,
+        html.light .bg-slate-950\/60,
+        html.light .bg-slate-950\/70,
         html.light .bg-slate-950\/80,
-        html.light .bg-slate-950\/90,
-        html.light .bg-slate-950\/70 { background-color:#f8fafc !important; }
+        html.light .bg-slate-950\/90        { background-color:#f1f5f9 !important; }
+
         html.light .bg-slate-900,
         html.light .bg-slate-900\/60,
-        html.light .bg-slate-900\/95,
-        html.light .bg-slate-900\/80 { background-color:#ffffff !important; }
+        html.light .bg-slate-900\/70,
+        html.light .bg-slate-900\/80,
+        html.light .bg-slate-900\/95        { background-color:#ffffff !important; }
+
         html.light .bg-slate-800,
-        html.light .bg-slate-800\/80,
-        html.light .bg-slate-800\/60,
-        html.light .bg-slate-800\/50 { background-color:#e2e8f0 !important; }
+        html.light .bg-slate-800\/80         { background-color:#e2e8f0 !important; }
+
+        /* odzivne različice (sm: / lg:) */
+        @media (min-width:640px) {
+            html.light .sm\:bg-slate-950   { background-color:#f1f5f9 !important; }
+            html.light .sm\:bg-transparent { background-color:transparent !important; }
+            html.light .sm\:border-slate-800 { border-color:#cbd5e1 !important; }
+        }
+        @media (min-width:1024px) {
+            html.light .lg\:bg-slate-900\/60 { background-color:#ffffff !important; }
+        }
+
+        html.light .hover\:bg-slate-700:hover  { background-color:#cbd5e1 !important; }
         html.light .hover\:bg-slate-800:hover,
         html.light .hover\:bg-slate-800\/60:hover,
-        html.light .hover\:bg-slate-800\/80:hover { background-color:#e2e8f0 !important; }
-        html.light .bg-slate-700, html.light .hover\:bg-slate-700:hover { background-color:#cbd5e1 !important; }
-        html.light .hover\:bg-slate-900:hover { background-color:#f1f5f9 !important; }
+        html.light .hover\:bg-slate-800\/80:hover { background-color:#dbe3ec !important; }
+        html.light .hover\:bg-slate-900:hover,
+        html.light .hover\:bg-slate-900\/50:hover,
+        html.light .hover\:bg-slate-900\/60:hover { background-color:#f8fafc !important; }
 
+        /* --- besedilo --- */
         html.light .text-white,
         html.light .text-slate-100,
         html.light .text-slate-200,
-        html.light .hover\:text-white:hover,
+        html.light .hover\:text-white:hover      { color:#0f172a !important; }
+        html.light .text-slate-300,
+        html.light .group:hover .group-hover\:text-slate-300 { color:#1e293b !important; }
+        html.light .text-slate-400               { color:#475569 !important; }
+        html.light .text-slate-500               { color:#5b6b80 !important; }
+        html.light .text-slate-600               { color:#64748b !important; }
+        html.light .hover\:text-slate-200:hover,
         html.light .group:hover .group-hover\:text-slate-200 { color:#0f172a !important; }
-        html.light .text-slate-300 { color:#1e293b !important; }
-        html.light .text-slate-400 { color:#475569 !important; }
-        html.light .text-slate-500 { color:#64748b !important; }
-        html.light .hover\:text-slate-200:hover { color:#0f172a !important; }
 
+        /* --- obrobe --- */
         html.light .border-slate-800,
-        html.light .border-slate-800\/80,
         html.light .border-slate-800\/60,
-        html.light .border-slate-700 { border-color:#cbd5e1 !important; }
-        html.light .divide-slate-800 > * + * { border-color:#cbd5e1 !important; }
+        html.light .border-slate-800\/80         { border-color:#cbd5e1 !important; }
+        html.light .border-slate-700             { border-color:#b8c4d4 !important; }
+        html.light .divide-slate-800 > * + *,
+        html.light .divide-slate-800\/60 > * + * { border-color:#cbd5e1 !important; }
 
-        html.light .text-sky-400 { color:#0369a1 !important; }
-        html.light .text-sky-300 { color:#0284c7 !important; }
-        html.light .text-indigo-300, html.light .text-indigo-400 { color:#4338ca !important; }
-        html.light .text-emerald-400 { color:#047857 !important; }
-        html.light .text-amber-400, html.light .text-amber-300 { color:#b45309 !important; }
-        html.light .text-red-400 { color:#b91c1c !important; }
-        html.light .text-orange-400 { color:#c2410c !important; }
-        html.light .text-yellow-400, html.light .text-yellow-300 { color:#a16207 !important; }
-        html.light .text-purple-400 { color:#7e22ce !important; }
-        html.light .text-cyan-400 { color:#0e7490 !important; }
-        html.light .text-green-400 { color:#15803d !important; }
-        html.light .text-pink-400 { color:#be185d !important; }
+        /* --- poudarne barve (temnejše za kontrast na belem) --- */
+        html.light .text-sky-300      { color:#0369a1 !important; }
+        html.light .text-sky-400      { color:#0369a1 !important; }
+        html.light .text-indigo-300,
+        html.light .text-indigo-400   { color:#4338ca !important; }
+        html.light .text-emerald-300,
+        html.light .text-emerald-400  { color:#047857 !important; }
+        html.light .text-amber-300,
+        html.light .text-amber-400    { color:#a55f07 !important; }
+        html.light .text-red-400,
+        html.light .text-red-500      { color:#b91c1c !important; }
+        html.light .text-orange-400   { color:#c2410c !important; }
+        html.light .text-yellow-300,
+        html.light .text-yellow-400   { color:#946200 !important; }
+        html.light .text-purple-400   { color:#7e22ce !important; }
+        html.light .text-cyan-400     { color:#0e7490 !important; }
+        html.light .text-green-400    { color:#15803d !important; }
+        html.light .text-blue-400     { color:#1d4ed8 !important; }
+        /* ilustracije v karticah groženj (text-<barva>-400/80) */
+        html.light .text-sky-400\/80     { color:#0369a1 !important; }
+        html.light .text-red-400\/80     { color:#b91c1c !important; }
+        html.light .text-orange-400\/80  { color:#c2410c !important; }
+        html.light .text-amber-400\/80   { color:#a55f07 !important; }
+        html.light .text-yellow-400\/80  { color:#946200 !important; }
+        html.light .text-purple-400\/80  { color:#7e22ce !important; }
+        html.light .text-cyan-400\/80    { color:#0e7490 !important; }
+        html.light .text-emerald-400\/80 { color:#047857 !important; }
+        html.light .text-green-400\/80   { color:#15803d !important; }
+        /* besedilo na polnih barvnih podlagah ostane svetlo */
+        html.light .bg-sky-600 .text-white,
+        html.light .bg-indigo-600 .text-white,
+        html.light .bg-emerald-600 .text-white,
+        html.light .bg-cyan-600 .text-white,
+        html.light button.bg-sky-600, html.light a.bg-sky-600,
+        html.light button.bg-indigo-600, html.light a.bg-indigo-600,
+        html.light button.bg-emerald-600, html.light button.bg-cyan-600 { color:#ffffff !important; }
+        html.light .text-slate-950 { color:#0f172a !important; }
 
-        /* gradienti / dekorativna ozadja */
-        html.light .from-slate-900, html.light .via-slate-900 { --tw-gradient-from:#ffffff !important; --tw-gradient-via:#ffffff !important; }
-        html.light .to-slate-950 { --tw-gradient-to:#f8fafc !important; }
-        html.light .to-indigo-950 { --tw-gradient-to:#e0e7ff !important; }
-        html.light .bg-gradient-to-r.from-white { --tw-gradient-from:#0f172a !important; }
-        html.light .bg-amber-950\/20 { background-color:#fffbeb !important; }
+        /* --- rahlo obarvana ozadja --- */
+        html.light .bg-amber-950\/20   { background-color:#fffbeb !important; }
         html.light .bg-emerald-900\/10 { background-color:#ecfdf5 !important; }
-        html.light .bg-red-900\/10, html.light .bg-red-950\/20 { background-color:#fef2f2 !important; }
-        html.light .bg-sky-950\/20, html.light .bg-sky-900\/10 { background-color:#f0f9ff !important; }
-        html.light .bg-indigo-950\/30 { background-color:#eef2ff !important; }
-        html.light .bg-slate-950\/80.backdrop-blur-md,
-        html.light #sidebarBackdrop { background-color:rgba(15,23,42,.45) !important; }
+        html.light .bg-red-900\/10     { background-color:#fef2f2 !important; }
+        html.light .bg-sky-950\/20,
+        html.light .bg-sky-900\/20     { background-color:#f0f9ff !important; }
 
-        /* naslovni gradient v headerju */
-        html.light header .bg-clip-text { -webkit-text-fill-color:#0f172a !important; color:#0f172a !important; background-image:none !important; }
+        /* --- GRADIENTI: v svetli temi jih nadomestimo v celoti --- */
+        html.light .bg-gradient-to-br.from-slate-900,
+        html.light .bg-gradient-to-r.from-slate-900 {
+            background-image:linear-gradient(135deg,#ffffff 0%,#f6f9fc 100%) !important;
+        }
+        html.light .from-slate-900.to-indigo-950 {
+            background-image:linear-gradient(to right,#ffffff 0%,#e8ecfb 100%) !important;
+        }
+        html.light .from-sky-900\/50 {
+            background-image:linear-gradient(to top right,#dbeafe 0%,#e8ecfb 60%,rgba(255,255,255,0) 100%) !important;
+        }
+        /* logotip in barvni gumbi ohranijo svoj gradient */
+        html.light .from-sky-600.to-blue-700 {
+            background-image:linear-gradient(to top right,#0284c7,#1d4ed8) !important;
+        }
+        /* naslov v headerju: gradientno besedilo -> polna barva */
+        html.light .bg-clip-text.text-transparent {
+            background-image:none !important;
+            -webkit-text-fill-color:#0f172a !important;
+            color:#0f172a !important;
+        }
 
-        .th-card-illu svg, .th-detail-illu svg { width:100%; height:100%; max-height:7.5rem; }
-        .th-detail-illu svg { max-height:9rem; }
-        .ut-card-illu svg { width:4.5rem; height:4.5rem; }
+        /* --- prekrivna okna in drsniki --- */
+        html.light #sidebarBackdrop,
+        html.light #teamsModal,
+        html.light #emergencyModal { background-color:rgba(15,23,42,.45) !important; }
+        html.light #teamsModal > div,
+        html.light #emergencyModal > div { background-color:#ffffff !important; }
+
         html.light .custom-scrollbar::-webkit-scrollbar-track { background:#e2e8f0; }
         html.light .custom-scrollbar::-webkit-scrollbar-thumb { background:#94a3b8; }
+        html.light .custom-scrollbar::-webkit-scrollbar-thumb:hover { background:#64748b; }
+
         html.light input, html.light select, html.light textarea { color:#0f172a !important; }
         html.light input::placeholder, html.light textarea::placeholder { color:#94a3b8 !important; }
-        html.light code, html.light pre { color:#0f172a; }
-        html.light .shadow-xl, html.light .shadow-lg { box-shadow:0 4px 14px rgba(15,23,42,.08) !important; }
+        html.light pre, html.light code { color:#1e293b !important; }
+        html.light .shadow-xl, html.light .shadow-lg, html.light .shadow-2xl {
+            box-shadow:0 4px 16px rgba(15,23,42,.09) !important;
+        }
+        html.light .shadow-inner { box-shadow:inset 0 2px 6px rgba(15,23,42,.05) !important; }
 
         @media print {
             aside, header, .no-print, #noticeBanner, footer { display: none !important; }
@@ -4229,9 +4294,7 @@ Poslano preko SRC SOC IncidentGuard Portala.`;
     function initTheme() {
       let saved = null;
       try { saved = localStorage.getItem(THEME_KEY); } catch (e) {}
-      if (!saved) {
-        saved = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
-      }
+      if (saved !== 'light' && saved !== 'dark') { saved = 'dark'; }
       applyTheme(saved);
     }
 
