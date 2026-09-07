@@ -27,21 +27,6 @@ brskalniku, ali datoteko postavi na interni spletni strežnik / intranet.
 Izvoz v PDF deluje brez internetne povezave (knjižnica jsPDF je vgrajena
 neposredno v datoteko).
 
-## Nastavitve
-
-Kontaktni podatki SOC ekipe in (neobvezen) webhook URL za Teams/Slack se
-urejajo na vrhu `<script>` dela v `index.html`, v objektu `SOC_CONTACT`:
-
-```js
-const SOC_CONTACT = {
-  email: "cybersec@src.si",
-  phone: "+386 41 685 662",
-  phoneDisplay: "+386 41 685 662",
-  portal: "",
-  webhookUrl: ""   // pusti prazno, da se gumb skrije
-};
-```
-
 ## Zasebnost podatkov
 
 Aplikacija nima zaledja: napredek pri korakih in zgodovina "Moje prijave"
